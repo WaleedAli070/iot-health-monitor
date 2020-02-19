@@ -1,0 +1,48 @@
+{
+    "sites": [
+        {
+            "id": "site-10",
+            "location": [
+                25.102653, 55.167330
+            ],
+            "sensors" : [
+                {
+                    "type" : "radar",
+                    "model" : "TrafiRadar",
+                    "serial" : "12345"
+                },
+                {
+                    "type" : "radar",
+                    "model" : "SmartMicro",
+                    "serial" : "45678"
+                }
+            ]
+        },
+        {
+            "id": "site-11",
+            "location": [
+                25.097262, 55.181863
+            ],
+            "sensors" : [
+                {
+                    "type" : "radar",
+                    "model" : "TrafiRadar",
+                    "serial" : "45678"
+                }
+            ]            
+        },
+        {
+            "id": "site-12",
+            "location": [
+                25.094405, 55.154051
+            ],
+            "sensors" : [
+                {
+                    "type" : "radar",
+                    "model" : "SmartMicro",
+                    "serial" : "54321"
+                }
+            ]            
+        }
+    ]
+}
