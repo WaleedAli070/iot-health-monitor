@@ -1,0 +1,3 @@
+database:
+  synchronize: false
+  logging: false
