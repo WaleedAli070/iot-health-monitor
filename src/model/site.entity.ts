@@ -1,7 +1,12 @@
-import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryColumn, OneToMany, UpdateDateColumn } from 'typeorm';
 import { Sensor } from './sensor.entity'
 import { Heartbeat } from './heartbeat.entity';
 
+export enum SENSOR_STATUS {
+  OFFLINE = 'offline',
+  ONLINE = 'online',
+  FAULT = 'fault',
+}
 @Entity()
 export class Site {
   @PrimaryColumn({ length: 50 })
@@ -12,6 +17,12 @@ export class Site {
 
   @Column({ type: 'double'})
   long: number;
+
+  @Column()
+  status: string; //enum column [offline, online, fault]
+
+  @UpdateDateColumn()
+  lastStatusUpdate: Date
 
   @OneToMany(type => Sensor, sensor => sensor.site)
   sensors: Sensor[];
