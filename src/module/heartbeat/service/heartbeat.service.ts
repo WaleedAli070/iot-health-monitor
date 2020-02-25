@@ -1,7 +1,9 @@
 import { Pagination, paginate } from 'nestjs-typeorm-paginate';
 import { Injectable, HttpException, HttpStatus, Inject } from '@nestjs/common';
 import { PaginationUtilService } from '../../../shared/utils/pagination-util/pagination-util.service';
+import { SocketUtilGateway } from '../../../shared/utils/socket-util/socket-util.gateway';
 import { Heartbeat } from '../../../model/heartbeat.entity'
+import { SITE_STATUS } from '../../../model/site.entity'
 import { HeartBeatDTO } from '../dto/heartbeat.dto';
 import { Repository } from 'typeorm';
 import { SiteService } from '../../../module/site/service/site.service';
@@ -12,7 +14,8 @@ export class HeartbeatService {
     @Inject('HEARTBEAT_REPOSITORY')
     private heartbeatRepository: Repository<Heartbeat>,
     private readonly pagination: PaginationUtilService,
-    private readonly siteService: SiteService
+    private readonly siteService: SiteService,
+    private socketUtilGateway: SocketUtilGateway
   ) {}
   
   /**
@@ -74,9 +77,9 @@ export class HeartbeatService {
   updateSiteStatusBasedOnHeartBeat (data) {
     let siteData = {
       id: data.site_id,
-      status: data.sensors[0].fault ? 'fault' : 'online'
+      status: data.sensors[0].fault ? SITE_STATUS.FAULT : SITE_STATUS.ONLINE
     }
-    console.log('inasd', siteData)
     this.siteService.updateSiteData(siteData)
+    this.socketUtilGateway.handleSiteStatusChange(siteData)
   }
 }
