@@ -41,14 +41,15 @@ export class HeartbeatService {
   /**
    * Get heart beat of a specific site - paginated
    *
-   * @param {Object} params - params object containing siteId
+   * @param {String} id - Site ID
+   * @param {Object} params - params object
    */
-  async getHeartBeatsBySiteId(params): Promise<Pagination<Heartbeat> | Heartbeat[]> {
+  async getHeartBeatsBySiteId(id: string, params = {}): Promise<Pagination<Heartbeat> | Heartbeat[]> {
     const paginationOptions = this.pagination.createOptions(params);
     const query = {
-      site_id: params.site_id
+      site_id: id
     };
-
+    console.log('inside site heartbeats', query)
     if (!paginationOptions) {
       return await this.heartbeatRepository.find(query);
     }
@@ -56,7 +57,9 @@ export class HeartbeatService {
     return await paginate<Heartbeat>(
       this.heartbeatRepository,
       paginationOptions,
-      query,
+      {
+        where: query
+      },
     );
   }
 
