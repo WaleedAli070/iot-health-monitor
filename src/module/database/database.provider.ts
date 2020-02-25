@@ -6,7 +6,6 @@ export const databaseProviders = [
     provide: 'DATABASE_CONNECTION',
     useFactory: async () => {
       const connection = await createConnection(typeOrmConfig)
-      console.log('Database Connection: ', connection)
       return connection
     },
   },
