@@ -24,7 +24,7 @@ export class Sensor {
   @ManyToOne(type => SensorType, type => type.sensors)
   type: SensorType;
 
-  @ManyToOne(type => SensorType, model => model.sensors)
+  @ManyToOne(type => SensorModel, model => model.sensors)
   model: SensorModel;
 
   @ManyToOne(type => Site, site => site.sensors)
