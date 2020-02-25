@@ -4,6 +4,7 @@ import { PaginationUtilService } from '../../../shared/utils/pagination-util/pag
 import { Heartbeat } from '../../../model/heartbeat.entity'
 import { HeartBeatDTO } from '../dto/heartbeat.dto';
 import { Repository } from 'typeorm';
+import { SiteService } from '../../../module/site/service/site.service';
 
 @Injectable()
 export class HeartbeatService {
@@ -11,6 +12,7 @@ export class HeartbeatService {
     @Inject('HEARTBEAT_REPOSITORY')
     private heartbeatRepository: Repository<Heartbeat>,
     private readonly pagination: PaginationUtilService,
+    private readonly siteService: SiteService
   ) {}
   
   /**
@@ -63,8 +65,18 @@ export class HeartbeatService {
     try {
       const heartbeat = await this.heartbeatRepository.create(data);
       await this.heartbeatRepository.save(heartbeat)
+      this.updateSiteStatusBasedOnHeartBeat(data)
     } catch (e) {
       throw new HttpException(e, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+  }
+
+  updateSiteStatusBasedOnHeartBeat (data) {
+    let siteData = {
+      id: data.site_id,
+      status: data.sensors[0].fault ? 'fault' : 'online'
+    }
+    console.log('inasd', siteData)
+    this.siteService.updateSiteData(siteData)
   }
 }
