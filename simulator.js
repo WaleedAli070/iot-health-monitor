@@ -56,7 +56,7 @@ function simulate() {
                 console.log('setting message for site', m.site_id, ' index ', site.i);
 
                 if (SEND_HTTP_HEARTBEAT) {
-                    axios.post('http://localhost:3000/heartbeat', m).then(res => {
+                    axios.post('http://localhost:3000/api/heartbeat', m).then(res => {
                         console.log('heartbeat sent with status ', state);
                         console.log(res.status);
                     }).catch(err => console.error(err));
