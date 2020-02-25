@@ -18,7 +18,7 @@ export class HeartbeatService {
    *
    * @param {Object} params - params object
    */
-  async getAllHeartBeats(params): Promise<Pagination<Heartbeat> | Heartbeat[]> {
+  async getAllHeartBeats(params = {}): Promise<Pagination<Heartbeat> | Heartbeat[]> {
     const paginationOptions = this.pagination.createOptions(params);
     const query = {};
 
@@ -62,7 +62,6 @@ export class HeartbeatService {
   async addHeartBeat(data: HeartBeatDTO) {
     try {
       const heartbeat = await this.heartbeatRepository.create(data);
-      console.log('after creation: ', heartbeat)
       await this.heartbeatRepository.save(heartbeat)
     } catch (e) {
       throw new HttpException(e, HttpStatus.INTERNAL_SERVER_ERROR);

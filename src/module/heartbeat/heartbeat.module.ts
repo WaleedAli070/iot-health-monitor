@@ -16,6 +16,9 @@ import { heartbeatProviders } from './service/heartbeat.provider';
     ...heartbeatProviders,
     HeartbeatService,
     PaginationUtilService
+  ],
+  exports: [
+    HeartbeatService
   ]
 })
 export class HeartbeatModule {}

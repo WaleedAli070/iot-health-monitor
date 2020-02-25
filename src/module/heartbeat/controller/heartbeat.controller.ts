@@ -6,6 +6,12 @@ import { HeartBeatDTO } from '../dto/heartbeat.dto';
 export class HeartbeatController {
   constructor(private heartbeatService: HeartbeatService) {}
   
+  @Get()
+  getAllHeartbeats (@Body() params) {
+    params.route = 'heartbeat'
+    return this.heartbeatService.getAllHeartBeats(params)
+  }
+  
   @Post()
   addNewHeartbeat (@Body() data: HeartBeatDTO) {
     console.log(data)
