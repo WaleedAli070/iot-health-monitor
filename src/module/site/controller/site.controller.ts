@@ -6,7 +6,12 @@ export class SiteController {
   constructor(private siteService: SiteService) {}
   
   @Get()
-  addNewHeartbeat () {
+  getAllSites () {
+    return this.siteService.getAllSites()
+  }
+
+  @Get()
+  getSiteHeartbeatBySiteId () {
     return this.siteService.getAllSites()
   }
 }
