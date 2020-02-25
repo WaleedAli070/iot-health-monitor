@@ -2,7 +2,7 @@ import { Repository } from 'typeorm';
 import { Pagination, paginate } from 'nestjs-typeorm-paginate';
 import { Injectable, HttpException, HttpStatus, Inject, OnModuleInit } from '@nestjs/common';
 import { PaginationUtilService } from '../../../shared/utils/pagination-util/pagination-util.service';
-import { Site } from '../../../model/site.entity'
+import { Site, SITE_STATUS } from '../../../model/site.entity'
 
 @Injectable()
 export class SiteService implements OnModuleInit {
@@ -67,7 +67,7 @@ export class SiteService implements OnModuleInit {
       const differenceInSeconds = difference / 1000;
       if (differenceInSeconds > 40) {  // Maximum threshold value after which it's safe to consider that the site is offline
         console.log(`${site.id} is Offline`)
-        site.status = 'offline'
+        site.status = SITE_STATUS.OFFLINE
         this.updateSiteData(site)
       }
     })

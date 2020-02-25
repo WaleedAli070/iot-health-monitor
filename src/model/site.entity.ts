@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryColumn, OneToMany, UpdateDateColumn } from 'type
 import { Sensor } from './sensor.entity'
 import { Heartbeat } from './heartbeat.entity';
 
-export enum SENSOR_STATUS {
+export enum SITE_STATUS {
   OFFLINE = 'offline',
   ONLINE = 'online',
   FAULT = 'fault',
