@@ -7,7 +7,7 @@ socket:
 database:
   type: 'sqlite'
   database: 'data/derq.db'
-  entities: [ Site, Sensor, HealthStatus ]
+  entities: [ Site, Sensor, Heartbeat ]
   synchronize: true
 
 web:
