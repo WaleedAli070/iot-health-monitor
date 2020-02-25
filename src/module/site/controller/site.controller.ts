@@ -9,9 +9,4 @@ export class SiteController {
   getAllSites () {
     return this.siteService.getAllSites()
   }
-
-  @Get()
-  getSiteHeartbeatBySiteId () {
-    return this.siteService.getAllSites()
-  }
 }

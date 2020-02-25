@@ -3,8 +3,6 @@ import { Pagination, paginate } from 'nestjs-typeorm-paginate';
 import { Injectable, HttpException, HttpStatus, Inject, OnModuleInit } from '@nestjs/common';
 import { PaginationUtilService } from '../../../shared/utils/pagination-util/pagination-util.service';
 import { Site } from '../../../model/site.entity'
-import { Heartbeat } from '../../../model/heartbeat.entity'
-import { HeartbeatService } from '../../../module/heartbeat/service/heartbeat.service';
 
 @Injectable()
 export class SiteService implements OnModuleInit {
@@ -12,7 +10,6 @@ export class SiteService implements OnModuleInit {
     @Inject('SITE_REPOSITORY')
     private siteRepository: Repository<Site>,
     private readonly pagination: PaginationUtilService,
-    private readonly hearbeatService: HeartbeatService
   ) {}
   
 
@@ -20,7 +17,7 @@ export class SiteService implements OnModuleInit {
     console.log('inside onModuleInit')
     setInterval(async () => {
       await this.siteHealthCheck()
-    }, 30000)
+    }, 10000)
   }
   /**
    * Get all sites - paginated
@@ -52,16 +49,13 @@ export class SiteService implements OnModuleInit {
   }
 
   /**
-   * Get Site Heartbeat by Id
-   *
-   * @param {Object} params - params object
+   * Update Site Data by Id
+   * 
+   * 
+   * @param {Site} data
    */
-  async getSiteHeartbeatById(params): Promise<Pagination<Heartbeat> | Heartbeat[]> {
-    return await this.hearbeatService.getHeartBeatsBySiteId(params);
-  }
-
-  updateSiteStatus (status) {
-    // this.siteRepository.update()
+  updateSiteData (data: Partial<Site>) {
+    this.siteRepository.update(data.id, data)
   }
 
   private async siteHealthCheck () {
@@ -71,9 +65,10 @@ export class SiteService implements OnModuleInit {
       const siteDate = new Date(site.lastStatusUpdate).getTime()
       const difference = (now - siteDate)
       const differenceInSeconds = difference / 1000;
-      console.log('=================================', differenceInSeconds)
       if (differenceInSeconds > 40) {  // Maximum threshold value after which it's safe to consider that the site is offline
         console.log(`${site.id} is Offline`)
+        site.status = 'offline'
+        this.updateSiteData(site)
       }
     })
   }
