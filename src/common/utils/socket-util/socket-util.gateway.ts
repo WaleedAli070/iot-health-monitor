@@ -36,6 +36,6 @@ export class SocketUtilGateway implements OnGatewayInit, OnGatewayConnection, On
   }
 
   handleSiteNewHeartbeat(payload) {
-    this.server.emit(`siteHeartbeat${payload.id}`, payload)
+    this.server.emit(`siteHeartbeat${payload.site_id}`, payload)
   }
 }

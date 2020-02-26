@@ -4,8 +4,8 @@ import { SiteModule } from '../site/site.module';
 import { DatabaseModule } from '../database/database.module';
 import { HeartbeatController } from './controller/heartbeat.controller';
 import { HeartbeatService } from './service/heartbeat.service';
-import { PaginationUtilService } from '../../shared/utils/pagination-util/pagination-util.service';
-import { SocketUtilGateway } from '../../shared/utils/socket-util/socket-util.gateway';
+import { PaginationUtilService } from '../../common/utils/pagination-util/pagination-util.service';
+import { SocketUtilGateway } from '../../common/utils/socket-util/socket-util.gateway';
 import { heartbeatProviders } from './service/heartbeat.provider';
 
 

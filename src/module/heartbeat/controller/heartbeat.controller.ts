@@ -12,6 +12,16 @@ export class HeartbeatController {
     return this.heartbeatService.getAllHeartBeats(params)
   }
 
+  @Get('site/:siteId/stats')
+  getHeartbeatStatsBySiteId(@Param('siteId') siteId: string) {
+    return this.heartbeatService.getHeartBeatStatsBySiteId(siteId)
+  }
+
+  @Get('site/:siteId/graphs')
+  getGraphDataBySiteId(@Param('siteId') siteId: string) {
+    return this.heartbeatService.getGraphDataBySiteId(siteId)
+  }
+
   @Get('site/:siteId')
   getHeartbeatsBySiteId(@Param('siteId') siteId: string, @Query() params) {
     params.route = `heartbeat/site/${siteId}`
@@ -20,7 +30,6 @@ export class HeartbeatController {
 
   @Post()
   addNewHeartbeat (@Body() data: HeartBeatDTO) {
-    console.log(data)
     return this.heartbeatService.addHeartBeat(data)
   }
 
