@@ -10,7 +10,7 @@
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title class="title">
-          DERQ
+          Open IoT
         </v-list-item-title>
         <v-list-item-subtitle>
           Health Monitor

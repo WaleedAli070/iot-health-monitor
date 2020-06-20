@@ -1,8 +1,8 @@
 {
   "name": "fullstack-health-monitor",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
-  "author": "",
+  "author": "waleedali070@gmail.com",
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",

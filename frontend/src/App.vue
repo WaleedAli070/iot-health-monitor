@@ -5,7 +5,7 @@
       color="primary"
       dark
     >
-      DERQ Task - Health Monitor
+      IoT Devices - Health Monitor
     </v-app-bar>
 
     <v-content>
