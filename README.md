@@ -64,6 +64,13 @@ Following Technologies/Libraries stack up to build this application
 
 ## Running the app
 
+### Running Simulator
+```bash
+# run the simulator
+$ node simulator
+```
+
+### Running REST API
 ```bash
 # development
 $ npm run start
@@ -73,9 +80,14 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+```
+### Running Frontend
+```bash
+# Navigate in frontend folder
+$ cd frontend
 
-# run the simulator
-$ node simulator
+# development server
+$ npm run dev
 ```
 
 ## Test
