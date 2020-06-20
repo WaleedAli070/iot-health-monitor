@@ -72,7 +72,7 @@ export default {
           if (response && response.length) {
             response.map(obj => {
               this.temperatureData.push(obj.temperature)
-              this.timestamps.push(moment.utc(obj.timestamp).format('LT'))
+              this.timestamps.push(moment(obj.timestamp).format('LT'))
             })
           }
           this.series = [{

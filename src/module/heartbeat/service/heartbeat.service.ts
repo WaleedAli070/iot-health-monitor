@@ -100,8 +100,8 @@ export class HeartbeatService {
    * @param {String} id - Site ID
    */
   async getGraphDataBySiteId(id: string): Promise<Pagination<Heartbeat> | Heartbeat[]> {
-    const from = moment().subtract(1, 'days').format()
-    const to = moment().format()
+    const from = moment().subtract(1, 'days').valueOf()
+    const to = moment().valueOf()
     const query = {
       site_id: id,
       timestamp: Between(from, to)
