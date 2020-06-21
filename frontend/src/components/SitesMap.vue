@@ -1,5 +1,5 @@
 <template>
-  <v-container class='sites-map'>
+  <v-container fluid class='pa-0'>
     <div class="google-map" ref="googleMap"></div>
     <template v-if="Boolean(this.google) && Boolean(this.map)">
       <slot
@@ -43,6 +43,6 @@ export default {
 
 <style scoped lang='sass'>
   .google-map
-    height: 85vh
+    height: 95vh
     width: 100%
 </style>

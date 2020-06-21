@@ -5,9 +5,10 @@
     permanent
     width="240"
     app
-    color="grey"
+    color="blue-grey darken-4"
+    dark
   >
-    <v-list-item>
+    <v-list-item dark>
       <v-list-item-content>
         <v-list-item-title class="title">
           Open IoT
@@ -46,8 +47,8 @@ export default {
   name: 'app-sidebar',
   data: () => ({
     items: [
-      { title: 'Home', icon: 'mdi-view-dashboard', path: '/' },
-      { title: 'Intersections', icon: 'mdi-view-dashboard', path: '/intersections' },
+      { title: 'Home', icon: 'mdi-home-outline', path: '/' },
+      { title: 'Sites', icon: 'mdi-air-filter', path: '/intersections' },
     ],
     right: null,
   }),

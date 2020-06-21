@@ -1,5 +1,5 @@
 <template>
-  <v-container class='sites-markers'></v-container>
+  <v-container fluid class='pa-0'></v-container>
 </template>
 
 <script>

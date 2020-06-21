@@ -1,12 +1,5 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      IoT Devices - Health Monitor
-    </v-app-bar>
 
     <v-content>
       <AppSidebar />
@@ -27,3 +20,12 @@ export default {
   }),
 };
 </script>
+
+<style lang="scss">
+.v-application {
+   font-family: $body-font-family, sans-serif !important;
+    .title { // To pin point specific classes of some components
+       font-family: $title-font, sans-serif !important;
+    }
+ }
+</style>

@@ -1,29 +1,32 @@
 <template>
-  <v-container class='intersections-profile'>
-    <v-row>
-      <h3 class="grey--text"><span class="black--text text-uppercase">{{this.siteId}}:</span> Unit Health History</h3>
+  <v-container class='px-0 intersections-profile'>
+    <v-row no-gutters>
+      <h3 class="grey--text title "><span class="black--text text-uppercase">{{this.siteId}}:</span> Unit Health History</h3>
     </v-row>
     <v-row>
-      <template v-for="(stats, index) in intersectionStats">
-        <v-col :key="index">
-          <StatsCard 
-            :title="stats.title"
-            :cardColor="stats.cardColor"
-            :value="stats.value"
-            :unit="stats.unit"
-            :lastUpdated="stats.lastUpdated"
-          >
-          </StatsCard>
-        </v-col>
-      </template>
-    </v-row>
-    <v-row>
-      <v-col>
+      <v-col cols="12" order="2" order-md="1" md="9">
         <TemperatureChart
           :siteURL="this.siteHeartbeatBaseURL"
         ></TemperatureChart>
       </v-col>
+      <v-col cols="12" order="1" order-md="2" md="3">
+        <v-row dense>
+          <template v-for="(stats, index) in intersectionStats">
+            <v-col :key="index">
+              <StatsCard 
+                :title="stats.title"
+                :cardColor="stats.cardColor"
+                :value="stats.value"
+                :unit="stats.unit"
+                :lastUpdated="stats.lastUpdated"
+              >
+              </StatsCard>
+            </v-col>
+          </template>
+        </v-row>
+      </v-col>
     </v-row>
+    <h3 class="subheading font-weight-medium mb-2">Health Checks</h3>
     <v-data-table
       :headers="headers"
       :items="heartbeats"
@@ -34,7 +37,7 @@
       :page.sync="options.page"
       :items-per-page="paginationControls.itemCount"
       hide-default-footer
-      class="elevation-1"
+      class="elevation-0"
     > 
       <template v-slot:item.timestamp="{ item }">
         {{ parseTime(item.timestamp) }}

@@ -1,5 +1,6 @@
 <template>
-  <v-container class='temperature-chart'>
+  <v-container class='pa-0 temperature-chart'>
+    <h3 class="subheading font-weight-medium">Temperature - Last 24 Hours</h3>
     <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
   </v-container>
 </template>
@@ -28,7 +29,7 @@ export default {
     }],
     chartOptions: {
       chart: {
-        height: 350,
+        height: 340,
         type: 'line',
         zoom: {
           enabled: false
@@ -39,10 +40,6 @@ export default {
       },
       stroke: {
         curve: 'straight'
-      },
-      title: {
-        text: 'Temperature - Last 24 Hours',
-        align: 'left'
       },
       grid: {
         row: {

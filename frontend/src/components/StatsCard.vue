@@ -2,12 +2,13 @@
   <v-card
     class="mt-4 mx-auto py-2"
     max-width="400"
-    :color="cardColor"
+    outlined
+    :loading="loading"
   >
 
     <v-card-text class="pt-0">
-      <span class="title mr-2">{{title}}</span>
-      <span class="title mx-2 font-weight-bold black--text" v-html="computedValueWithUnit"></span>
+      <span class="mr-1">{{title}}</span>
+      <span class="mx-1 font-weight-bold black--text" v-html="computedValueWithUnit"></span>
       <v-divider class="my-2"></v-divider>
       <v-icon
         class="mr-2"
@@ -56,6 +57,12 @@ export default {
     },
     computedValueWithUnit () {
       return `${this.value} ${this.unit}`
+    },
+    loading () {
+      if (this.value == null) {
+        return true
+      }
+      return false
     }
   },
   mounted () {},

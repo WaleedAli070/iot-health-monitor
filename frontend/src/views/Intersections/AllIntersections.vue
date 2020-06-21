@@ -1,5 +1,6 @@
 <template>
   <v-container class='all-intersections'>
+    <h3 class="title my-4"> All Sites</h3>
     <v-data-table
       :headers="headers"
       :items="intersections"
@@ -11,6 +12,15 @@
     >
       <template v-slot:item.lastStatusUpdate="{ item }">
         {{ parseTime(item.lastStatusUpdate) }}
+      </template>
+      <template v-slot:item.status="{ item }">
+        <v-chip
+         small 
+         :color="getColor(item.status)"
+         class="text-capitalize"
+         dark>
+          {{ item.status }}
+        </v-chip>
       </template>
     </v-data-table>
   </v-container>
@@ -71,11 +81,24 @@ export default {
       if (item && item.id) {
         this.$router.push(item.id)
       }
+    },
+    getColor (item) {
+      if (item) {
+        switch (item) {
+          case 'offline':
+            return 'error'
+          case 'online':
+            return 'success'
+          case 'fault':
+            return 'warning'
+        }
+      }
     }
   }
 }
 </script>
 
 <style scoped lang='sass'>
-  .all-intersections
+::v-deep .v-data-table__wrapper
+  cursor: pointer
 </style>
